@@ -1,4 +1,4 @@
-khalid welcome
+
 <p-toolbar [style]="{ height: '100px' }">
     <div class="p-toolbar-group-start">
         <img src="assets/icons/icon-72x72.png" alt="logo" />
@@ -20,15 +20,20 @@ khalid welcome
 
             </div>
             
-            <p-button *ngIf="!isAuthenticated()" 
-                     label="Connexion" 
-                     routerLink="/login" 
-                     [text]="true" />
-            
-            <p-button *ngIf="isAuthenticated()" 
+            @if (isAuthenticated()) {
+
+                <p-button 
                      label="Déconnexion" 
                      (onClick)="logout()" 
                      [text]="true" />
+
+            } @else {
+                            <p-button
+                     label="Connexion" 
+                     routerLink="/login" 
+                     [text]="true" />
+            }
+
         </div>
     </div>
 </p-toolbar>
