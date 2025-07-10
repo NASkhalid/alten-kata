@@ -1,3 +1,4 @@
+khalid welcome
 <p-toolbar [style]="{ height: '100px' }">
     <div class="p-toolbar-group-start">
         <img src="assets/icons/icon-72x72.png" alt="logo" />
@@ -6,7 +7,29 @@
         {{ title }}
     </div>
     <div class="p-toolbar-group-end">
-        <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+        <div class="flex align-items-center gap-3">
+            <div class="relative">
+                <i class="pi pi-shopping-cart cursor-pointer" 
+                   style="font-size: 2rem"
+                   routerLink="/cart"></i>
+@if (cartCount() > 0) {
+  <span class="cart-badge">{{ cartCount ()}}</span>
+} @else {
+  <span class="cart-empty">Vide</span>
+}
+
+            </div>
+            
+            <p-button *ngIf="!isAuthenticated()" 
+                     label="Connexion" 
+                     routerLink="/login" 
+                     [text]="true" />
+            
+            <p-button *ngIf="isAuthenticated()" 
+                     label="Déconnexion" 
+                     (onClick)="logout()" 
+                     [text]="true" />
+        </div>
     </div>
 </p-toolbar>
 <p-splitter 
